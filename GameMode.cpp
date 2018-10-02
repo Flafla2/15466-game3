@@ -24,6 +24,60 @@
 #include <cstddef>
 #include <random>
 
+Load< Mesh4D > hypercube(LoadTagDefault, [](){
+	glm::vec4 hypercube_vertices_[] = {
+		glm::vec4(-1, -1, -1, -1), // 0
+		glm::vec4(+1, -1, -1, -1), // 1
+		glm::vec4(-1, +1, -1, -1), // 2
+		glm::vec4(+1, +1, -1, -1), // 3
+		glm::vec4(-1, -1, +1, -1), // 4
+		glm::vec4(+1, -1, +1, -1), // 5
+		glm::vec4(-1, +1, +1, -1), // 6
+		glm::vec4(+1, +1, +1, -1), // 7
+		glm::vec4(-1, -1, -1, +1), // 8
+		glm::vec4(+1, -1, -1, +1), // 9
+		glm::vec4(-1, +1, -1, +1), // 10
+		glm::vec4(+1, +1, -1, +1), // 11
+		glm::vec4(-1, -1, +1, +1), // 12
+		glm::vec4(+1, -1, +1, +1), // 13
+		glm::vec4(-1, +1, +1, +1), // 14
+		glm::vec4(+1, +1, +1, +1)  // 15
+	};
+	int hypercube_faces_[] = {
+		0, 1, 3, 2,
+		4, 5, 7, 6,
+		8, 9, 11, 10,
+		12, 13, 15, 14,
+
+		9, 13, 15, 11,
+		8, 12, 14, 10,
+		1, 5, 7, 3,
+		0, 4, 6, 2,
+
+		10, 11, 15, 14,
+		8, 9, 13, 12,
+		2, 3, 7, 6,
+		0, 1, 5, 4,
+
+		8, 9, 1, 0,
+		9, 1, 5, 13,
+		13, 5, 4, 12,
+		12, 8, 0, 4,
+
+		10, 2, 3, 11,
+		11, 3, 7, 15,
+		15, 7, 6, 14,
+		14, 6, 2, 10,
+
+		10, 2, 0, 8,
+		11, 3, 1, 9,
+		15, 7, 5, 13,
+		14, 6, 4, 12
+	};
+	std::vector<glm::vec4> hypercube_vertices(hypercube_vertices_, 16);
+	std::vector<int> hypercube_faces(hypercube_faces_, 24 * 4);
+	return new Mesh4D(vertices, hypercube_faces)
+});
 
 Load< MeshBuffer > meshes(LoadTagDefault, [](){
 	return new MeshBuffer(data_path("vignette.pnct"));
@@ -419,6 +473,8 @@ void GameMode::draw(glm::uvec2 const &drawable_size) {
 	glActiveTexture(GL_TEXTURE1);
 	glBindTexture(GL_TEXTURE_2D, 0);
 	glActiveTexture(GL_TEXTURE0);
+
+
 
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 

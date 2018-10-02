@@ -11,8 +11,8 @@
 #include <glm/gtc/type_ptr.hpp>
 #include <glm/glm.hpp>
 
-Mesh4D::Mesh4D(std::vector<glm::vec4> vertices, std::vector<int> edges, std::vector<int> tris, GLuint program) :
-		vertices(vertices), edges(edges), tris(tris), program(program) {
+Mesh4D::Mesh4D(std::vector<glm::vec4> vertices, std::vector<int> quads, GLuint program) :
+		vertices(vertices), edges(edges), quads(quads), program(program) {
 	transformed_vertices = std::vector<glm::vec4>(vertices);
 	projected_vertices = std::vector<Vertex>(vertices.size());
  

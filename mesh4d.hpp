@@ -32,8 +32,7 @@ enum RotationAxis4D {
 struct Mesh4D {
 	// Logical objects (unprojected R4 space)
 	std::vector<glm::vec4> vertices;
-	std::vector<int> edges;
-	std::vector<int> tris;
+	std::vector<int> quads;
 	std::vector<glm::vec4> transformed_vertices;
 	glm::vec4 reference = glm::vec4(0.f,0.f,0.f,1.f); // used to compare against soln
 	// Assume camera is looking down -w axis, with perspective projection wrt w
@@ -66,7 +65,7 @@ struct Mesh4D {
 	Attrib Position;
 	Attrib Color;
 
-	Mesh4D(std::vector<glm::vec4> vertices, std::vector<int> edges, std::vector<int> tris, GLuint program);
+	Mesh4D(std::vector<glm::vec4> vertices, std::vector<int> quads, GLuint program);
 
 	void rotate(RotationAxis4D axis, float angle);
 	void apply_perspective();
