@@ -80,6 +80,7 @@ CLIENT_NAMES =
 	MeshBuffer
 	draw_text
 	Sound
+	mesh4d
 	;
 
 if $(OS) = NT {

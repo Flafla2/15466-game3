@@ -1,0 +1,1295 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"send",
+				"send\tvoid send(const T &t)"
+			],
+			[
+				"connect",
+				"connection\tstd::__list_iterator<Connection, void *> connection"
+			],
+			[
+				"inc",
+				"include"
+			],
+			[
+				"or",
+				"owner\tPlayer owner"
+			],
+			[
+				"other",
+				"OTHER_PLAYER\tPlayer OTHER_PLAYER"
+			],
+			[
+				"host",
+				"host_transforms"
+			],
+			[
+				"mesh",
+				"Mesh\tMesh"
+			],
+			[
+				"cam_rot",
+				"cam_rot_fwd"
+			],
+			[
+				"cannon",
+				"cannon_pitch"
+			],
+			[
+				"tank",
+				"tank_top_transform"
+			],
+			[
+				"transform",
+				"transform"
+			],
+			[
+				"first_",
+				"first_object\tScene::Object * first_object"
+			],
+			[
+				"first",
+				"first_object\tScene::Object * first_object"
+			],
+			[
+				"next",
+				"alloc_next\tScene::Transform * alloc_next"
+			],
+			[
+				"camera",
+				"camera_ptr"
+			],
+			[
+				"tank_top",
+				"tank_top_transform"
+			],
+			[
+				"car",
+				"carry_here"
+			],
+			[
+				"soln",
+				"soln__len"
+			],
+			[
+				"no_",
+				"no_xh_dups"
+			],
+			[
+				"max",
+				"max_same_up_to"
+			],
+			[
+				"to",
+				"to_skyline"
+			],
+			[
+				"GL_COLOR_MAT",
+				"GL_COLOR_MATERIAL\tGL_COLOR_MATERIAL"
+			],
+			[
+				"GL_POIN",
+				"GL_POINTS\tGL_POINTS"
+			],
+			[
+				"GL_AM",
+				"GL_AMBIENT_AND_DIFFUSE\tGL_AMBIENT_AND_DIFFUSE"
+			],
+			[
+				"draw",
+				"draw_box"
+			],
+			[
+				"glRotate",
+				"glRotatef\tvoid glRotatef(GLfloat angle, GLfloat x, GLfloat y, GLfloat z)"
+			],
+			[
+				"GL_PROJECTION",
+				"GL_PROJECTION_MATRIX\tGL_PROJECTION_MATRIX"
+			],
+			[
+				"GL_MODEL",
+				"GL_MODELVIEW_MATRIX\tGL_MODELVIEW_MATRIX"
+			],
+			[
+				"glLoadMat",
+				"glLoadMatrixd\tvoid glLoadMatrixd(const GLdouble *m)"
+			],
+			[
+				"matrix",
+				"matrix_transform"
+			],
+			[
+				"glTrans",
+				"glTranslatef\tvoid glTranslatef(GLfloat x, GLfloat y, GLfloat z)"
+			],
+			[
+				"gl_m",
+				"gl_major_version\tint gl_major_version"
+			],
+			[
+				"line",
+				"line_c\tchar * line_c"
+			],
+			[
+				"st",
+				"c_str\tconst std::basic_string<char, std::char_traits<char>, std::allocator<char> >::value_type * c_str() const"
+			],
+			[
+				"glTra",
+				"glTranslatef\tvoid glTranslatef(GLfloat x, GLfloat y, GLfloat z)"
+			],
+			[
+				"str",
+				"string"
+			],
+			[
+				"cu",
+				"cur_time\tstd::chrono::time_point<std::chrono::steady_clock, std::chrono::duration<long long, std::ratio<1, 1000000000> > > cur_time"
+			],
+			[
+				"ball_v",
+				"ball_vel_n\tglm::vec2 ball_vel_n"
+			],
+			[
+				"ball_",
+				"ball_vel\tglm::vec2 ball_vel"
+			],
+			[
+				"ball",
+				"ball_vel\tglm::vec2 ball_vel"
+			],
+			[
+				"track_",
+				"track_mesh\tGame::Mesh track_mesh"
+			],
+			[
+				"padd",
+				"paddle_pos"
+			],
+			[
+				"nor",
+				"normalize\tvoid normalize()"
+			],
+			[
+				"L_out",
+				"L_out_ind\tCMU462::Spectrum L_out_ind"
+			],
+			[
+				"de",
+				"depth\tsize_t depth"
+			],
+			[
+				"getBind",
+				"getBindTransformationWithoutRoot\tCMU462::Matrix4x4 getBindTransformationWithoutRoot()"
+			],
+			[
+				"vert",
+				"verticesBegin\tCMU462::VertexIter verticesBegin()"
+			],
+			[
+				"time",
+				"time\ttime_t time(time_t *)"
+			],
+			[
+				"use",
+				"useCapsuleRadius"
+			],
+			[
+				"n",
+				"blendPos\tCMU462::Vector3D blendPos"
+			],
+			[
+				"d",
+				"distance\tdouble distance"
+			],
+			[
+				"vertices",
+				"nVertices\tSize nVertices() const"
+			],
+			[
+				"hem",
+				"HalfedgeMesh\tHalfedgeMesh()"
+			],
+			[
+				"NU",
+				"NUM_BUCKETS\tconst int NUM_BUCKETS"
+			],
+			[
+				"get",
+				"get_bbox\tCMU462::BBox get_bbox() const"
+			],
+			[
+				"r",
+				"range\tsize_t range"
+			],
+			[
+				"bd",
+				"get_bsdf\tCMU462::BSDF * get_bsdf() const"
+			],
+			[
+				"has_I",
+				"has_invalid_cycles"
+			],
+			[
+				"ha",
+				"halfedges"
+			],
+			[
+				"Halfedge",
+				"HalfedgeCIter\tHalfedgeCIter"
+			],
+			[
+				"Halfed",
+				"HalfedgeIter\tHalfedgeIter"
+			],
+			[
+				"Halfe",
+				"HalfedgeIter\tHalfedgeIter"
+			],
+			[
+				"Edge",
+				"EdgeIter\tEdgeIter"
+			],
+			[
+				"Edg",
+				"EdgeIter\tEdgeIter"
+			],
+			[
+				"texe",
+				"texels"
+			],
+			[
+				"sampl",
+				"sample_bilinear\tCMU462::Color sample_bilinear(CMU462::Texture &tex, float u, float v)"
+			],
+			[
+				"uint8",
+				"uint8_to_float\tvoid uint8_to_float(float *dst, unsigned char *src)"
+			],
+			[
+				"sample",
+				"sample_nearest\tCMU462::Color sample_nearest(CMU462::Texture &tex, float u, float v)"
+			],
+			[
+				"rasterize_point",
+				"rasterize_point_ss\tvoid rasterize_point_ss(int x, int y, CMU462::Color color)"
+			],
+			[
+				"Matr",
+				"Matrix3x3\tMatrix3x3(double *data)"
+			],
+			[
+				"supers",
+				"supersample_target"
+			],
+			[
+				"Software",
+				"SoftwareRendererImp"
+			],
+			[
+				"glEn",
+				"glEnable"
+			],
+			[
+				"GL_TE",
+				"GL_TEXTURE_2D"
+			],
+			[
+				"GL_PO",
+				"GL_POINTS\tGL_POINTS"
+			],
+			[
+				"last",
+				"last_block_alloc"
+			],
+			[
+				"lat",
+				"last_block_alloc"
+			],
+			[
+				"prev_all",
+				"prev_alloc"
+			],
+			[
+				"get_prev",
+				"get_prev_alloc"
+			],
+			[
+				"header",
+				"header"
+			],
+			[
+				"extract",
+				"extract_prev_alloc"
+			],
+			[
+				"SL_",
+				"SL_LINEAR_SIZE"
+			],
+			[
+				"min",
+				"min_block_size"
+			],
+			[
+				"remove",
+				"remove_from_freelist"
+			],
+			[
+				"NEXT",
+				"next_free"
+			],
+			[
+				"dbg_",
+				"dbg_requires"
+			],
+			[
+				"block",
+				"block_next"
+			],
+			[
+				"mm_check",
+				"mm_checkblock"
+			],
+			[
+				"size_",
+				"size_mask"
+			],
+			[
+				"BLOCK",
+				"block_next"
+			],
+			[
+				"free_",
+				"free_next"
+			],
+			[
+				"next_free",
+				"next_free"
+			],
+			[
+				"prev_free",
+				"prev_free_off"
+			],
+			[
+				"write_",
+				"write_header"
+			],
+			[
+				"dbg",
+				"dbg_requires"
+			],
+			[
+				"heap",
+				"heap_start"
+			],
+			[
+				"alloc_m",
+				"prev_alloc_mask"
+			],
+			[
+				"STD",
+				"STDOUT_FILENO"
+			],
+			[
+				"O_",
+				"O_RDWR"
+			],
+			[
+				"job_",
+				"job_list"
+			],
+			[
+				"getj",
+				"getjobpid"
+			],
+			[
+				"job",
+				"job_list"
+			],
+			[
+				"run_bui",
+				"run_builtin_fg"
+			],
+			[
+				"Sigset",
+				"Sigfillset"
+			],
+			[
+				"sig_",
+				"SIG_SETMASK"
+			],
+			[
+				"set",
+				"set_bits"
+			],
+			[
+				"dirty",
+				"dirty_count"
+			],
+			[
+				"char",
+				"char_to_access_type"
+			],
+			[
+				"acces",
+				"access_type_to_char"
+			],
+			[
+				"cur",
+				"cur_line"
+			],
+			[
+				"hit",
+				"hit_str"
+			],
+			[
+				"bloc",
+				"block_offset"
+			],
+			[
+				"address",
+				"address_to_tag"
+			],
+			[
+				"addres",
+				"address_to_block_offset"
+			],
+			[
+				"data",
+				"data_size"
+			],
+			[
+				"trace",
+				"tracefile_given"
+			],
+			[
+				"q_ins",
+				"q_insert_head"
+			],
+			[
+				"all_boa",
+				"all_boards_aligned"
+			],
+			[
+				"outc",
+				"outcome_to_string"
+			],
+			[
+				"all",
+				"all_boards_aligned"
+			],
+			[
+				"best",
+				"bestMaxEdge"
+			],
+			[
+				"prun",
+				"prune_percentage"
+			],
+			[
+				"In_p",
+				"In_Play"
+			],
+			[
+				"search",
+				"search_depth"
+			],
+			[
+				"below",
+				"BELOW"
+			],
+			[
+				"won_d",
+				"won_diag1"
+			],
+			[
+				"toList",
+				"toList2D"
+			],
+			[
+				"P",
+				"PotionColors"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "/Users/adrianbiagioli/Developer/School/462-Staff/CMU462/Scotty3D/CMU462/include/CMU462/game3.sublime-project",
+			"settings":
+			{
+				"buffer_size": 92,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Packages/Makefile/Make.sublime-build",
+					""
+				],
+				[
+					"Packages/Makefile/Make.sublime-build",
+					"Clean"
+				],
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					""
+				],
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					"Traditional"
+				],
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					"PdfLaTeX"
+				],
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					"XeLaTeX"
+				],
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					"LuaLaTeX"
+				],
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					"Basic Builder"
+				],
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					"Basic Builder - PdfLaTeX"
+				],
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					"Basic Builder - XeLaTeX"
+				],
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					"Basic Builder - LuaLaTeX"
+				],
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					"Script Builder"
+				]
+			],
+			[
+				"Packages/LaTeXTools/LaTeX.sublime-build",
+				""
+			]
+		],
+		[
+			[
+				[
+					"Packages/Makefile/Make.sublime-build",
+					""
+				],
+				[
+					"Packages/Makefile/Make.sublime-build",
+					"Clean"
+				],
+				[
+					"Packages/SML (Standard ML)/SML.sublime-build",
+					""
+				]
+			],
+			[
+				"Packages/Makefile/Make.sublime-build",
+				""
+			]
+		],
+		[
+			[
+				[
+					"game2",
+					""
+				],
+				[
+					"game2",
+					"Clean"
+				],
+				[
+					"game2",
+					"Run"
+				],
+				[
+					"game2",
+					"Regenerate assets"
+				],
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					""
+				],
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					"Run"
+				]
+			],
+			[
+				"game2",
+				"Run"
+			]
+		],
+		[
+			[
+				[
+					"game2",
+					""
+				],
+				[
+					"game2",
+					"Clean"
+				],
+				[
+					"game2",
+					"Run Client"
+				],
+				[
+					"game2",
+					"Regenerate assets"
+				],
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					""
+				],
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					"Run"
+				]
+			],
+			[
+				"game2",
+				""
+			]
+		],
+		[
+			[
+				[
+					"gltutorial",
+					""
+				],
+				[
+					"gltutorial",
+					"Clean"
+				],
+				[
+					"gltutorial",
+					"Run"
+				],
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					""
+				],
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					"Run"
+				]
+			],
+			[
+				"gltutorial",
+				"Run"
+			]
+		],
+		[
+			[
+				[
+					"gltutorial",
+					""
+				],
+				[
+					"gltutorial",
+					"Clean"
+				],
+				[
+					"gltutorial",
+					"run"
+				],
+				[
+					"gltutorial",
+					"teapot.obj"
+				],
+				[
+					"gltutorial",
+					"circle.obj"
+				],
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					""
+				],
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					"Run"
+				]
+			],
+			[
+				"gltutorial",
+				"run"
+			]
+		],
+		[
+			[
+				[
+					"gltutorial",
+					""
+				],
+				[
+					"gltutorial",
+					"Clean"
+				],
+				[
+					"gltutorial",
+					"teapot"
+				],
+				[
+					"gltutorial",
+					"circle"
+				],
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					""
+				],
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					"Run"
+				]
+			],
+			[
+				"gltutorial",
+				"teapot"
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"hex view",
+				"HexViewer: Toggle Hex View"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"package control settings",
+				"Preferences: Package Control Settings – Default"
+			],
+			[
+				"install ",
+				"Package Control: Install Package"
+			],
+			[
+				"list l",
+				"Package Control: List Packages"
+			],
+			[
+				"ena",
+				"Package Control: Enable Package"
+			],
+			[
+				"EN",
+				"Package Control: Enable Package"
+			],
+			[
+				"debuggi",
+				"SublimeGDB: Stop Debugging"
+			],
+			[
+				"gdb",
+				"SublimeGDB: Step Over"
+			],
+			[
+				"ecc sett",
+				"EasyClangComplete: Settings"
+			],
+			[
+				"settings",
+				"Preferences: Settings"
+			],
+			[
+				"build sys",
+				"Build: New Build System"
+			],
+			[
+				"ecc",
+				"EasyClangComplete: Clean current CMake cache"
+			],
+			[
+				"enable",
+				"Package Control: Enable Package"
+			],
+			[
+				"list",
+				"Package Control: List Packages"
+			],
+			[
+				"pack",
+				"Package Control: Install Package"
+			],
+			[
+				"disab",
+				"Package Control: Disable Package"
+			],
+			[
+				"colorsub",
+				"Colorsublime: Install Theme"
+			],
+			[
+				"package remov",
+				"Package Control: Remove Package"
+			],
+			[
+				"color",
+				"UI: Select Color Scheme"
+			],
+			[
+				"package insta",
+				"Package Control: Install Package"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"package",
+				"Preferences: Browse Packages"
+			],
+			[
+				"close all",
+				"File: Close All"
+			],
+			[
+				"save",
+				"File: Save All"
+			],
+			[
+				"close a",
+				"File: Close All"
+			],
+			[
+				"close",
+				"File: Close All"
+			],
+			[
+				"save all",
+				"File: Save All"
+			],
+			[
+				"beaut",
+				"HTMLBeautify"
+			],
+			[
+				"in",
+				"Package Control: Install Package"
+			],
+			[
+				"omnimark",
+				"OmniMarkupPreviewer: Preview Current Markup in Browser"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"markmo",
+				"Markmon launch"
+			],
+			[
+				"package control",
+				"Package Control: Remove Package"
+			],
+			[
+				"packa",
+				"Package Control: Remove Package"
+			],
+			[
+				"package remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"package re",
+				"Package Control: Remove Package"
+			],
+			[
+				"Package remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"package contr",
+				"Package Control: Remove Package"
+			],
+			[
+				"comp",
+				"Package Control: List Unmanaged Packages"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Remove Package"
+			],
+			[
+				"Package Control: Insta",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: Upg",
+				"Package Control: Upgrade Package"
+			],
+			[
+				"Package Control: Remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"PackageControl: List",
+				"Package Control: List Packages"
+			]
+		],
+		"width": 468.0
+	},
+	"console":
+	{
+		"height": 322.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '6f4c264a24d933ce70df5dedcf1dcaee' + 'ebe013ee18cced0ef93d5f746d80ef60'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)",
+			"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/adrianbiagioli/Developer/School/466/game3"
+	],
+	"file_history":
+	[
+		"/Users/adrianbiagioli/Developer/School/462-Staff/CMU462/Scotty3D/CMU462/include/CMU462/spectrum.h",
+		"/Users/adrianbiagioli/Developer/School/462-Staff/CMU462/Scotty3D/src/bsdf.cpp",
+		"/Users/adrianbiagioli/Developer/School/462-Staff/CMU462/Scotty3D/src/static_scene/sphere.cpp",
+		"/Users/adrianbiagioli/Developer/School/462-Staff/CMU462/Scotty3D/src/pathtracer.cpp",
+		"/Users/adrianbiagioli/Developer/School/462-Staff/CMU462/Scotty3D/src/ray.h",
+		"/Users/adrianbiagioli/Developer/School/462-Staff/CMU462/Rasterization/grading_materials/DrawSVG_Grading_Guide.md",
+		"/Users/adrianbiagioli/Developer/School/462-Staff/CMU462/Scotty3D/src/bsdf.h",
+		"/Users/adrianbiagioli/Downloads/q5-scores.csv",
+		"/Users/adrianbiagioli/Developer/School/462-Staff/CMU462/Scotty3D/src/random_util.h",
+		"/Users/adrianbiagioli/Developer/School/462-Staff/CMU462/Scotty3D/CMU462/src/spectrum.cpp",
+		"/Users/adrianbiagioli/Developer/School/462-Staff/CMU462/Scotty3D/assignment_management/pathtracer_instructions.md",
+		"/Users/adrianbiagioli/Developer/School/466/game2/GameMode.cpp",
+		"/Users/adrianbiagioli/Desktop/test.svg",
+		"/Users/adrianbiagioli/Desktop/house-meeting.md",
+		"/Users/adrianbiagioli/.bash_profile",
+		"/Users/adrianbiagioli/Developer/School/466/game2/Scene.cpp",
+		"/Users/adrianbiagioli/Developer/School/466/game2/MeshBuffer.cpp",
+		"/Users/adrianbiagioli/Developer/School/466/game2/Game.cpp",
+		"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1/list",
+		"/Users/adrianbiagioli/Developer/School/466/game2/meshes/export-meshes.py",
+		"/Users/adrianbiagioli/Developer/School/466/game2/meshes/Makefile",
+		"/Users/adrianbiagioli/Developer/School/466/game2/game2.sublime-project",
+		"/Users/adrianbiagioli/Developer/School/466/game2/Scene.hpp",
+		"/Users/adrianbiagioli/Developer/School/466/game2/GameMode.hpp",
+		"/Users/adrianbiagioli/Developer/School/466/game2/Load.hpp",
+		"/Users/adrianbiagioli/Developer/School/466/game2/meshes/export-scene.py",
+		"/Users/adrianbiagioli/Developer/School/466/game2/read_chunk.hpp",
+		"/Users/adrianbiagioli/Developer/School/466/game2/main.cpp",
+		"/Users/adrianbiagioli/Developer/School/466/game2/Game.hpp",
+		"/Users/adrianbiagioli/Developer/School/466/game2/.gitignore",
+		"/Users/adrianbiagioli/Developer/School/466/game2/data_path.cpp",
+		"/Users/adrianbiagioli/Developer/School/466/game2/dist/tank.scene",
+		"/Users/adrianbiagioli/Developer/School/466/game2/Mode.cpp",
+		"/Users/adrianbiagioli/Developer/School/466/game2/MenuMode.cpp",
+		"/Users/adrianbiagioli/Developer/School/466/game2/server.cpp",
+		"/Users/adrianbiagioli/Developer/School/466/game2/Load.cpp",
+		"/Users/adrianbiagioli/Developer/School/466/game2/WalkMesh.hpp",
+		"/Users/adrianbiagioli/Developer/School/466/game2/WalkMesh.cpp",
+		"/Users/adrianbiagioli/Developer/School/466/game0/.gitignore",
+		"/Users/adrianbiagioli/Developer/School/466/game0/base0.sublime-project",
+		"/Users/adrianbiagioli/Developer/School/210/skylinelab/written.tex",
+		"/Users/adrianbiagioli/Developer/School/210/bignumlab/support/MkBitSeqBignum.sml",
+		"/Users/adrianbiagioli/Developer/School/210/bignumlab/.gitignore",
+		"/Users/adrianbiagioli/Library/Application Support/Sublime Text 3/Packages/Package Control/Package Control.sublime-settings",
+		"/Users/adrianbiagioli/Developer/School/210/skylinelab/MkSkyline.sml",
+		"/Users/adrianbiagioli/Developer/School/210/skylinelab/Tests.sml",
+		"/Users/adrianbiagioli/Developer/School/210/parenlab/written.tex",
+		"/Users/adrianbiagioli/Developer/School/210/skylinelab/Sandbox.sml",
+		"/Users/adrianbiagioli/Developer/School/210/skylinelab/lib/structures/misc/TestSuite.sml",
+		"/Users/adrianbiagioli/Desktop/gcs-pitches-fall18.md",
+		"/Users/adrianbiagioli/Developer/School/462-Staff/GLTutorial/checkpoints/1_lines.cpp",
+		"/Users/adrianbiagioli/Developer/School/462-Staff/GLTutorial/checkpoints/2_triangles.cpp",
+		"/Users/adrianbiagioli/Developer/School/462-Staff/GLTutorial/checkpoints/3_transformations.cpp",
+		"/Users/adrianbiagioli/Developer/School/462-Staff/GLTutorial/checkpoints/4_blending.cpp",
+		"/Users/adrianbiagioli/Developer/School/462-Staff/GLTutorial/checkpoints/5_mesh.cpp",
+		"/Users/adrianbiagioli/Developer/School/462-Staff/GLTutorial/checkpoints/6_mvp.cpp",
+		"/Users/adrianbiagioli/Developer/School/462-Staff/GLTutorial/checkpoints/7_lighting.cpp",
+		"/Users/adrianbiagioli/Developer/School/462-Staff/GLTutorial/src/CMakeLists.txt",
+		"/Users/adrianbiagioli/Developer/School/462-Staff/GLTutorial/src/Color.hpp",
+		"/Users/adrianbiagioli/Developer/School/462-Staff/GLTutorial/src/Mesh.cpp",
+		"/Users/adrianbiagioli/Developer/School/462-Staff/GLTutorial/gltutorial.sublime-project",
+		"/Users/adrianbiagioli/Developer/School/462-Staff/GLTutorial/src/GraphicsManager.cpp",
+		"/Users/adrianbiagioli/Developer/School/462-Staff/GLTutorial/src/GraphicsManager.hpp",
+		"/Users/adrianbiagioli/Developer/School/462-Staff/GLTutorial/src/Mesh.hpp",
+		"/Users/adrianbiagioli/Developer/School/462-Staff/GLTutorial/obj/circle.obj",
+		"/Users/adrianbiagioli/Developer/School/462-Staff/GLTutorial/CMakeLists.txt",
+		"/Users/adrianbiagioli/Developer/School/462-Staff/GLTutorial/.gitignore",
+		"/Users/adrianbiagioli/Developer/School/462-Staff/GLTutorial/include/GraphicsManager.hpp",
+		"/Users/adrianbiagioli/Developer/School/462-Staff/GLTutorial/build/src/CMakeFiles/GLTutorial.dir/flags.make",
+		"/Users/adrianbiagioli/Developer/School/462-Staff/GLTutorial/build/src/Makefile",
+		"/Users/adrianbiagioli/Developer/School/462-Staff/GLTutorial/.clang_complete",
+		"/Users/adrianbiagioli/Developer/School/462-Staff/GLTutorial/src/.clang_complete",
+		"/Users/adrianbiagioli/Developer/School/466/base0/base0.sublime-project",
+		"/Users/adrianbiagioli/Developer/School/462-Staff/GLTutorial/gltutorial.sublime_project.json",
+		"/Users/adrianbiagioli/Developer/School/462-Staff/GLTutorial/glfw/include/GLFW/glfw3.h",
+		"/Users/adrianbiagioli/Developer/School/210/parenlab/written.log",
+		"/Users/adrianbiagioli/Developer/School/210/integrallab/written.tex",
+		"/Users/adrianbiagioli/Developer/School/466-base0/.clang_complete",
+		"/Users/adrianbiagioli/Developer/School/466-base0/base0.sublime-project",
+		"/Users/adrianbiagioli/Developer/School/466-base0/.gitignore",
+		"/Users/adrianbiagioli/Developer/School/466-base0/meshes/.gitignore",
+		"/Users/adrianbiagioli/Developer/School/462/Scotty3D/scotty3d.sublime-project",
+		"/Users/adrianbiagioli/Developer/School/466-base0/meshes/meshes.blob",
+		"/Users/adrianbiagioli/Developer/School/466/Mode.hpp",
+		"/Users/adrianbiagioli/Developer/School/466/read_chunk.hpp",
+		"/Users/adrianbiagioli/Developer/ta/CMU462/MathReview/LinearAlgebra.tex",
+		"/Users/adrianbiagioli/Developer/ta/CMU462/MathReview/MRRelease.pl",
+		"/Users/adrianbiagioli/Developer/ta/CMU462/README.md",
+		"/Users/adrianbiagioli/Developer/School/150/homework-repo/hw/07/code/hw07.sml",
+		"/Users/adrianbiagioli/Developer/School/466/README.md",
+		"/Users/adrianbiagioli/Developer/Projects/icarus/Assets/Scripts/Whip/WhipLink.cs",
+		"/Users/adrianbiagioli/Developer/School/462/Scotty3D/src/pathtracer.cpp",
+		"/Users/adrianbiagioli/Developer/School/462/Scotty3D/src/halfEdgeMesh.h",
+		"/Users/adrianbiagioli/Documents/School/Computer Graphics/Final Review.md",
+		"/Users/adrianbiagioli/Developer/School/462/Scotty3D/src/pathtracer.h",
+		"/Users/adrianbiagioli/Developer/School/462/Scotty3D/src/sampler.cpp",
+		"/Users/adrianbiagioli/Developer/School/462/Scotty3D/src/intersection.h",
+		"/Users/adrianbiagioli/Developer/School/462/Scotty3D/src/bsdf.h",
+		"/Users/adrianbiagioli/Developer/School/462/Scotty3D/src/application.h",
+		"/Users/adrianbiagioli/Developer/School/462/Scotty3D/CMU462/include/CMU462/spectrum.h",
+		"/Users/adrianbiagioli/Developer/School/462/Scotty3D/src/bsdf.cpp",
+		"/Users/adrianbiagioli/Developer/School/462/Scotty3D/media/pathtracer/advanced/CBspheres_refraction.dae",
+		"/Users/adrianbiagioli/Developer/School/462/Scotty3D/src/collada/collada.cpp",
+		"/Users/adrianbiagioli/Developer/School/462/Scotty3D/media/pathtracer/advanced/CBspheres_lambertian.dae",
+		"/Users/adrianbiagioli/Developer/School/462/Scotty3D/src/bvh.h",
+		"/Users/adrianbiagioli/Developer/School/462/Scotty3D/src/bbox.h",
+		"/Users/adrianbiagioli/Developer/School/462/Scotty3D/src/bbox.cpp",
+		"/Users/adrianbiagioli/Developer/School/462/Scotty3D/src/bvh.cpp",
+		"/Users/adrianbiagioli/Developer/School/462/Scotty3D/CMakeLists.txt",
+		"/Users/adrianbiagioli/Developer/School/462/Scotty3D/src/application.cpp",
+		"/Users/adrianbiagioli/Developer/School/462/Scotty3D/src/dynamic_scene/joint.cpp",
+		"/Users/adrianbiagioli/Developer/School/462/Scotty3D/src/dynamic_scene/skeleton.h",
+		"/Users/adrianbiagioli/Developer/School/462/Scotty3D/src/dynamic_scene/joint.h",
+		"/Users/adrianbiagioli/Developer/School/462/Scotty3D/src/dynamic_scene/mesh.cpp",
+		"/Users/adrianbiagioli/Developer/School/462/Scotty3D/writeup.txt",
+		"/Users/adrianbiagioli/Developer/School/462/Scotty3D/src/dynamic_scene/skeleton.cpp",
+		"/Users/adrianbiagioli/Developer/School/462/Scotty3D/src/spline.h",
+		"/Users/adrianbiagioli/Developer/School/462/Scotty3D/src/halfEdgeMesh.cpp",
+		"/Users/adrianbiagioli/Developer/School/462/Scotty3D/src/dynamic_scene/scene.cpp",
+		"/Users/adrianbiagioli/Developer/School/462/Scotty3D/src/dynamic_scene/sphere.cpp",
+		"/Users/adrianbiagioli/Developer/School/462/Scotty3D/src/static_scene/sphere.cpp",
+		"/Users/adrianbiagioli/Downloads/test.html",
+		"/Users/adrianbiagioli/Developer/School/462/Scotty3D/src/spline.inl",
+		"/Users/adrianbiagioli/Desktop/movie/movie.mp4",
+		"/Users/adrianbiagioli/Developer/School/462/Scotty3D/src/meshEdit.h",
+		"/Users/adrianbiagioli/Developer/School/462/Scotty3D/src/meshEdit.cpp",
+		"/Users/adrianbiagioli/Developer/School/462/Scotty3D/src/timeline.h",
+		"/Users/adrianbiagioli/Developer/School/462/Scotty3D/src/timeline.cpp"
+	],
+	"find":
+	{
+		"height": 26.0
+	},
+	"find_in_files":
+	{
+		"height": 481.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "/Users/adrianbiagioli/Developer/School/462-Staff/CMU462/Scotty3D/CMU462/include/CMU462/game3.sublime-project",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 92,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 26.0
+	},
+	"input":
+	{
+		"height": 163.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 193.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.hex_viewer_inspector":
+	{
+		"height": 145.0
+	},
+	"output.latextools":
+	{
+		"height": 120.0
+	},
+	"output.mdpopups":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "game3.sublime-project",
+	"replace":
+	{
+		"height": 48.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"c0vm.c"
+			],
+			[
+				"anal",
+				"~/Documents/School/15-122/Programming Assignments/2016-09-29-doslingos/doslingos-handout/analysis.c0"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 295.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

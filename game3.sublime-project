@@ -1,0 +1,30 @@
+{
+	"folders":
+	[
+		{
+			"path": "."
+		}
+	],
+	"build_systems":
+    [
+        {
+            "name": "game3",
+            "cmd": ["jam"],
+            "working_dir": "$project_path",
+            "selector": "source.c++",
+            "shell": true,
+            "variants": [
+            	{
+                    "name": "Clean",
+                    "working_dir": "$project_path",
+                    "cmd": ["jam clean"]
+                },
+                {
+                	"name": "Regenerate assets",
+                	"working_dir": "$project_path/meshes",
+                	"cmd": "make"
+                }
+            ]
+        }
+    ]
+}
