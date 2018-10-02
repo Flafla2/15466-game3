@@ -33,7 +33,7 @@ Mesh4D::Mesh4D(std::vector<glm::vec4> vertices, std::vector<int> edges, std::vec
 		if (attrib.size == 0) return; //don't bind empty attribs
 		GLint location = glGetAttribLocation(program, name);
 		if (location == -1) {
-			std::cerr << "WARNING: attribute '" << name << "' in mesh buffer isn't active in program." << std::endl;
+			std::cerr << "WARNING: attribute '" << name << "' in 4d mesh buffer isn't active in program." << std::endl;
 		} else {
 			glVertexAttribPointer(location, attrib.size, attrib.type, attrib.normalized, attrib.stride, (GLbyte *)0 + attrib.offset);
 			glEnableVertexAttribArray(location);

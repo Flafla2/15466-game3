@@ -12,7 +12,9 @@
 #include "draw_text.hpp" //helper to... um.. draw text
 #include "load_save_png.hpp"
 #include "texture_program.hpp"
+#include "tesseract_program.hpp"
 #include "depth_program.hpp"
+#include "mesh4d.hpp"
 
 #include <glm/gtc/type_ptr.hpp>
 
