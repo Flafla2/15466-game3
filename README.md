@@ -1,11 +1,10 @@
-# Game Information
-(Note: fill in this portion with information about your game.)
+# The Gates 4DX Ultimate
 
-Title: (TODO: your game's title)
+Title: The Gates 4DX Ultimate (with Knuckles!)
 
-Author: (TODO: your name)
+Author: Adrian Biagioli
 
-Design Document: [TODO: name of design document](TODO: link to design document)
+Design Document: [The Gates](http://graphics.cs.cmu.edu/courses/15-466-f18/game3-designs/default/)
 
 Screen Shot:
 
@@ -13,15 +12,88 @@ Screen Shot:
 
 How To Play:
 
-TODO: describe the controls and (if needed) goals/strategy.
+Can you think in 4 dimensions?  This puzzle game has you
+manipulate the 4D hypercube on the left with the goal of 
+arriving at the target hypercube on the right.  Rotations
+that are possible in 3D (i.e., around the X/Y/Z axes 
+irrespective of W) will be synced between the two halves so that
+you only need to think about the extra dimension.
+
+Click and drag with the mouse to orbit around the scene.  You
+can use the keyboard buttons shown on screen to manipulate your
+hypercube.  As mentioned, transformations about the XY, YZ, or
+XZ planes are synchronized between the two hypercubes.  If you
+get stuck (or find yourself in gimbal lock), you can press
+Backspace to reset the game.
+
+When you think you have the answer, press Space to check!  If
+you are right, the game will present you with a new challenge.
+
+The first puzzle you are given is easy -- the first challenge
+given can be solved in a single rotation.  After that, you will
+need at least 2 rotations to solve each challenge.
 
 Changes From The Design Document:
 
-TODO: what did you need to add/remove/modify from the original design? Why?
+The default design had the player try and fit a 3D shape into
+a 2D hole.  I thought that was boring, so I had the player 
+manipulate a 4D hypercube instead!  The basic mechanics of the
+game are the same, but this time around we are measuring the
+orientation of a 4D object (with an orientation in R4).
 
 Good / Bad / Ugly Code:
 
-TODO: provide examples of code you wrote from this project that you think is good (elegant, simple, useful), bad (hack-y, brittle, unreadable), and ugly (particularly inelegant). Provide a sentence or two of justification for the examples.
+The most interesting part of the code in this project relates
+to 4-dimensional mesh representations.  The code for this can
+be found in `mesh4d.cpp` / `mesh4d.hpp`.  I also had to 
+work out the geometry of a hypercube (not so easy -- there are
+*24* faces to render!).  You can find the hypercube geometry
+specification at the top of `GameMode.cpp`.  Although I only
+use hypercubes in this game, the foundational 4D rendering code
+can extend to arbitrary 4D meshes.
+
+I chose not to use the GPU or vertex shaders to render the
+hypercubes because a hypercube is simple enough that there
+would be no significant performance impact of running on the 
+CPU.  If I wanted to continue this project, I would likely port 
+the vertex manipulation code to GLSL so that the game would run
+faster.
+
+A bit on the math used: I chose to project the 4D hypercube
+using a perspective projection on the W axis.  The camera
+is located at a fixed position of +3, "looking" down the -W
+axis.  My renderer is capable of changing its position in
+4-space, but for the purposes of this game I thought it would
+be too confusing.  You can notice the default orientation looks
+like two cubes inside of each other; indeed, the smaller cube
+is further away from the camera in 4-space, which yields a
+smaller projected volume.
+
+An interesting challenge with this game was figuring out how
+to make the orientation of the hypercube clear.  The hypercube
+couldn't be opaque, because faces often intersect with each
+other.  The colors also need to be distinguishable from each
+other so that players can easily compare with the reference.
+In the end, I chose to use semitransparent complimentary colors 
+on opposite sides of the hypercube.  This way, the colors
+combined in an aesthetically pleasing way but were still
+easily distinguishable.  This strategy is inspired by the
+character Dot (a living hypercube) from the game FEZ.
+
+# Attribution
+
+Much of the math behind 4D object rendering and 4D rotations 
+was informed by the following Unity Answers post:
+
+https://answers.unity.com/questions/438251/creating-a-tesseract-a-4d-cube.html
+
+... and the code sample that was posted there by user WillNode:
+
+http://tomkail.com/tesseract/Tesseract.cs
+
+This Math Stackexchange post was also very helpful at defining 4D rotation:
+
+https://math.stackexchange.com/questions/1402362/rotation-in-4d
 
 # Changes In This Base Code
 

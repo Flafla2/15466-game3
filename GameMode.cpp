@@ -368,7 +368,7 @@ void GameMode::regenerate_target_rotations() {
 		else if (r == 1) axis = YW;
 		else axis = ZW; // r == 2
 		double r2 = ((double)std::rand()) / ((double)RAND_MAX);
-		float angle = 180.f * r2;
+		float angle = 40.f + 240.f * r2;
 		target_rotations.push_front(Rotation4D(axis, angle));
 	}
 	generated_before = true;
