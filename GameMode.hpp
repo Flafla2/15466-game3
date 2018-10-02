@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Scene.hpp"
 #include "Mode.hpp"
 
 #include "MeshBuffer.hpp"
@@ -30,4 +31,6 @@ struct GameMode : public Mode {
 
 	float camera_spin = 0.0f;
 	float spot_spin = 0.0f;
+
+	Scene::Transform hypercube_transform;
 };

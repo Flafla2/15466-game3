@@ -32,7 +32,7 @@ enum RotationAxis4D {
 struct Mesh4D {
 	// Logical objects (unprojected R4 space)
 	std::vector<glm::vec4> vertices;
-	std::vector<int> quads;
+	std::vector<int> tris;
 	std::vector<glm::vec4> transformed_vertices;
 	glm::vec4 reference = glm::vec4(0.f,0.f,0.f,1.f); // used to compare against soln
 	// Assume camera is looking down -w axis, with perspective projection wrt w
@@ -41,7 +41,7 @@ struct Mesh4D {
 	// OpenGL Rendering objects (projected R3 space)
 	struct Vertex {
 		glm::vec3 position;
-		glm::u8vec4 color;
+		glm::u8vec4 color = glm::u8vec4(128, 128, 128, 128);
 	};
 	std::vector<Vertex> projected_vertices;
 	size_t cur_vao_size;
@@ -74,5 +74,6 @@ struct Mesh4D {
 		transformed_vertices = std::vector<glm::vec4>(vertices);
 		reference = glm::vec4(0,0,0,1);
 	}
-	void draw(Scene::Transform &t, glm::mat4 const &world_to_clip);
+	void draw(Scene::Transform &t, glm::mat4 const &world_to_clip) const;
+	void draw(Scene::Transform &t, Scene::Camera const *camera) const;
 };

@@ -11,9 +11,26 @@
 #include <glm/gtc/type_ptr.hpp>
 #include <glm/glm.hpp>
 
-Mesh4D::Mesh4D(std::vector<glm::vec4> vertices, std::vector<int> quads, GLuint program) :
-		vertices(vertices), edges(edges), quads(quads), program(program) {
+Mesh4D::Mesh4D(std::vector<glm::vec4> raw_verts, std::vector<int> quads, GLuint program) : program(program) {
+	tris = std::vector<int>((quads.size() / 4) * 2 * 3);
+
+	for(int i = 0; i < quads.size() / 4; ++i) {
+		int ti = 6 * i;
+		int qi = 4 * i;
+		tris[ti + 0] = quads[qi + 0];
+		tris[ti + 1] = quads[qi + 1];
+		tris[ti + 2] = quads[qi + 3];
+		tris[ti + 3] = quads[qi + 1];
+		tris[ti + 4] = quads[qi + 2];
+		tris[ti + 5] = quads[qi + 3];
+	}
+
+	vertices = std::vector<glm::vec4>(tris.size());
+
+	for(int i = 0; i < tris.size(); ++i)
+		vertices[i] = raw_verts[tris[i]];
 	transformed_vertices = std::vector<glm::vec4>(vertices);
+
 	projected_vertices = std::vector<Vertex>(vertices.size());
  
 	glGenBuffers(1, &vbo);
@@ -69,7 +86,8 @@ void Mesh4D::apply_perspective() {
 		Vertex& vertex = projected_vertices[x];
 		glm::vec3& cur_r3 = vertex.position;
 
-		double norm_factor = 1.0 / (cur_r4.w - camera_position_w);
+		// Negate, because we consider the -w axis as the "look" axis here.
+		double norm_factor = -1.0 / (cur_r4.w - camera_position_w);
 		cur_r3.x = cur_r4.x * norm_factor;
 		cur_r3.y = cur_r4.y * norm_factor;
 		cur_r3.z = cur_r4.z * norm_factor;
@@ -77,6 +95,12 @@ void Mesh4D::apply_perspective() {
 }
 
 void Mesh4D::upload_vertex_data() {
+	std::cout << "Sending hypercube verts to GPU:" << std::endl;
+	for(int x = 0; x < projected_vertices.size(); x++) {
+		auto p = projected_vertices[x].position;
+		std::cout << "(" << p.x << ", " << p.y << ", " << p.z << ")" << std::endl;
+	}
+	glBindVertexArray(vao);
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
 	glBufferData(
 		GL_ARRAY_BUFFER, 
@@ -132,7 +156,7 @@ void Mesh4D::rotate(RotationAxis4D axis, float angle) {
 	}
 }
 
-void Mesh4D::draw(Scene::Transform &t, glm::mat4 const &world_to_clip) {
+void Mesh4D::draw(Scene::Transform &t, glm::mat4 const &world_to_clip) const {
 	glm::mat4 local_to_world = t.make_local_to_world();
 	glm::mat4 mvp = world_to_clip * local_to_world;
 	//glm::mat4x3 mv = glm::mat4x3(local_to_world);
@@ -143,5 +167,12 @@ void Mesh4D::draw(Scene::Transform &t, glm::mat4 const &world_to_clip) {
 		glUniformMatrix4fv(tesseract_program->object_to_clip_mat4, 1, GL_FALSE, glm::value_ptr(mvp));
 
 	glBindVertexArray(vao);
-	glDrawArrays(vao, 0, cur_vao_size);
+	glDrawArrays(GL_TRIANGLES, 0, cur_vao_size * 7);
+}
+
+void Mesh4D::draw(Scene::Transform &t, Scene::Camera const *camera) const {
+	glm::mat4 world_to_camera = camera->transform->make_world_to_local();
+	glm::mat4 world_to_clip = camera->make_projection() * world_to_camera;
+
+	draw(t, world_to_clip);
 }

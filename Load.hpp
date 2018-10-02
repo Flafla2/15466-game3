@@ -56,3 +56,25 @@ struct Load {
 	T const *value;
 };
 
+// Modification of Load<> that treats the value as non-const
+// Useful if the loaded content needs to be "consumed" by some other
+// script after loading (eg aggregating loaded data).
+template< typename T >
+struct MLoad {
+	//Constructing a MLoad< T > adds the passed function to the list of functions to call:
+	MLoad( LoadTag tag, const std::function< T *() > &load_fn ) : value(nullptr) {
+		add_load_function(tag, [this,load_fn](){
+			this->value = load_fn();
+			if (!(this->value)) {
+				throw std::runtime_error("Loading failed.");
+			}
+		});
+	}
+
+	//Make a "MLoad< T >" behave like a "T *":
+	explicit operator bool() { return value != nullptr; }
+	T &operator*() { return *value; }
+	T *operator->() { return value; }
+
+	T *value;
+};

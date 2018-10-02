@@ -9,7 +9,6 @@ TesseractProgram::TesseractProgram() {
 		"uniform mat4 object_to_clip;\n"
 		"layout(location=0) in vec4 Position;\n" //note: layout keyword used to make sure that the location-0 attribute is always bound to something
 		"in vec4 Color;\n"
-		"out vec3 position;\n"
 		"out vec4 color;\n"
 		"void main() {\n"
 		"	gl_Position = object_to_clip * Position;\n"

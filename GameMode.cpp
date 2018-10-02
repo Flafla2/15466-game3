@@ -24,7 +24,7 @@
 #include <cstddef>
 #include <random>
 
-Load< Mesh4D > hypercube(LoadTagDefault, [](){
+MLoad< Mesh4D > hypercube(LoadTagDefault, [](){
 	glm::vec4 hypercube_vertices_[] = {
 		glm::vec4(-1, -1, -1, -1), // 0
 		glm::vec4(+1, -1, -1, -1), // 1
@@ -74,9 +74,9 @@ Load< Mesh4D > hypercube(LoadTagDefault, [](){
 		15, 7, 5, 13,
 		14, 6, 4, 12
 	};
-	std::vector<glm::vec4> hypercube_vertices(hypercube_vertices_, 16);
-	std::vector<int> hypercube_faces(hypercube_faces_, 24 * 4);
-	return new Mesh4D(vertices, hypercube_faces)
+	std::vector<glm::vec4> hypercube_vertices(hypercube_vertices_, hypercube_vertices_ + 16);
+	std::vector<int> hypercube_faces(hypercube_faces_, hypercube_faces_ + (24 * 4));
+	return new Mesh4D(hypercube_vertices, hypercube_faces, tesseract_program->program);
 });
 
 Load< MeshBuffer > meshes(LoadTagDefault, [](){
@@ -275,6 +275,9 @@ Load< Scene > scene(LoadTagDefault, [](){
 });
 
 GameMode::GameMode() {
+	hypercube->apply_perspective();
+	hypercube->upload_vertex_data();
+	hypercube_transform.scale = glm::vec3(5, 5, 5);
 }
 
 GameMode::~GameMode() {
@@ -296,6 +299,10 @@ bool GameMode::handle_event(SDL_Event const &evt, glm::uvec2 const &window_size)
 			return true;
 		}
 
+	}
+
+	if(evt.type == SDL_KEYDOWN) {
+		
 	}
 
 	return false;
@@ -474,7 +481,7 @@ void GameMode::draw(glm::uvec2 const &drawable_size) {
 	glBindTexture(GL_TEXTURE_2D, 0);
 	glActiveTexture(GL_TEXTURE0);
 
-
+	hypercube->draw(hypercube_transform, camera);
 
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
