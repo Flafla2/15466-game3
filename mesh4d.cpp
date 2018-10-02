@@ -11,28 +11,7 @@
 #include <glm/gtc/type_ptr.hpp>
 #include <glm/glm.hpp>
 
-Mesh4D::Mesh4D(std::vector<glm::vec4> raw_verts, std::vector<int> quads, GLuint program) : program(program) {
-	tris = std::vector<int>((quads.size() / 4) * 2 * 3);
-
-	for(int i = 0; i < quads.size() / 4; ++i) {
-		int ti = 6 * i;
-		int qi = 4 * i;
-		tris[ti + 0] = quads[qi + 0];
-		tris[ti + 1] = quads[qi + 1];
-		tris[ti + 2] = quads[qi + 3];
-		tris[ti + 3] = quads[qi + 1];
-		tris[ti + 4] = quads[qi + 2];
-		tris[ti + 5] = quads[qi + 3];
-	}
-
-	vertices = std::vector<glm::vec4>(tris.size());
-
-	for(int i = 0; i < tris.size(); ++i)
-		vertices[i] = raw_verts[tris[i]];
-	transformed_vertices = std::vector<glm::vec4>(vertices);
-
-	projected_vertices = std::vector<Vertex>(vertices.size());
- 
+void Mesh4D::init_gl() {
 	glGenBuffers(1, &vbo);
 
 	Position = Attrib(3, GL_FLOAT, GL_FALSE, sizeof(Vertex), offsetof(Vertex, position));
@@ -80,6 +59,46 @@ Mesh4D::Mesh4D(std::vector<glm::vec4> raw_verts, std::vector<int> quads, GLuint 
 	}
 }
 
+Mesh4D::Mesh4D(std::vector<glm::vec4> raw_verts, std::vector<int> quads, std::vector<glm::u8vec4> quad_colors, GLuint program) : program(program) {
+	tris = std::vector<int>((quads.size() / 4) * 2 * 3);
+
+	for(int i = 0; i < quads.size() / 4; ++i) {
+		int ti = 6 * i;
+		int qi = 4 * i;
+		tris[ti + 0] = quads[qi + 0];
+		tris[ti + 1] = quads[qi + 1];
+		tris[ti + 2] = quads[qi + 3];
+		tris[ti + 3] = quads[qi + 1];
+		tris[ti + 4] = quads[qi + 2];
+		tris[ti + 5] = quads[qi + 3];
+	}
+
+	vertices = std::vector<glm::vec4>(tris.size());
+	colors = std::vector<glm::u8vec4>(tris.size());
+
+	for(int i = 0; i < tris.size(); ++i) {
+		int og_quad = i / 6;
+		vertices[i] = raw_verts[tris[i]];
+		colors[i] = quad_colors[og_quad];
+	}
+	transformed_vertices = std::vector<glm::vec4>(vertices);
+	projected_vertices = std::vector<Vertex>(vertices.size());
+
+	init_gl();
+}
+
+Mesh4D::Mesh4D(Mesh4D &other) {
+	vertices = std::vector<glm::vec4>(other.vertices);
+	transformed_vertices = std::vector<glm::vec4>(other.transformed_vertices);
+	colors = std::vector<glm::u8vec4>(other.colors);
+	tris = std::vector<int>(other.tris);
+	program = other.program;
+
+	projected_vertices = std::vector<Vertex>(vertices.size());
+
+	init_gl();
+}
+
 void Mesh4D::apply_perspective() {
 	for(int x = 0; x < transformed_vertices.size(); ++x) {
 		glm::vec4& cur_r4 = transformed_vertices[x];
@@ -91,15 +110,22 @@ void Mesh4D::apply_perspective() {
 		cur_r3.x = cur_r4.x * norm_factor;
 		cur_r3.y = cur_r4.y * norm_factor;
 		cur_r3.z = cur_r4.z * norm_factor;
+
+		vertex.color = colors[x];
 	}
 }
 
 void Mesh4D::upload_vertex_data() {
-	std::cout << "Sending hypercube verts to GPU:" << std::endl;
-	for(int x = 0; x < projected_vertices.size(); x++) {
-		auto p = projected_vertices[x].position;
-		std::cout << "(" << p.x << ", " << p.y << ", " << p.z << ")" << std::endl;
+	static bool has_sent_debug = false;
+	if(!has_sent_debug) {
+		std::cout << "Sending first time hypercube verts to GPU:" << std::endl;
+		for(int x = 0; x < projected_vertices.size(); x++) {
+			auto p = projected_vertices[x].position;
+			std::cout << "(" << p.x << ", " << p.y << ", " << p.z << ")" << std::endl;
+		}
+		has_sent_debug = true;
 	}
+	
 	glBindVertexArray(vao);
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
 	glBufferData(

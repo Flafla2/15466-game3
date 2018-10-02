@@ -74,9 +74,52 @@ MLoad< Mesh4D > hypercube(LoadTagDefault, [](){
 		15, 7, 5, 13,
 		14, 6, 4, 12
 	};
+	// Coloring scheme: color opposite faces with
+	// complementary colors, and color the "fins"
+	// connecting w = -1 to w = 1 a feint white.
+	//
+	// This strategy is inspired by the game FEZ, which
+	// features a lovable companion character, a hypercube
+	// called Dot, which has a similar coloring scheme.
+	glm::u8vec4 hypercube_colors_[] = {
+		glm::u8vec4(0, 0, 255, 128),
+		glm::u8vec4(0, 0, 255, 128),
+		glm::u8vec4(255, 255, 0, 128),
+		glm::u8vec4(255, 255, 0, 128),
+
+		glm::u8vec4(255, 0, 0, 128),
+		glm::u8vec4(255, 0, 0, 128),
+		glm::u8vec4(0, 255, 255, 128),
+		glm::u8vec4(0, 255, 255, 128),
+
+		glm::u8vec4(0, 255, 0, 128),
+		glm::u8vec4(0, 255, 0, 128),
+		glm::u8vec4(255, 0, 255, 128),
+		glm::u8vec4(255, 0, 255, 128),
+
+		glm::u8vec4(255, 255, 255, 80),
+		glm::u8vec4(255, 255, 255, 80),
+		glm::u8vec4(255, 255, 255, 80),
+		glm::u8vec4(255, 255, 255, 80),
+
+		glm::u8vec4(255, 255, 255, 80),
+		glm::u8vec4(255, 255, 255, 80),
+		glm::u8vec4(255, 255, 255, 80),
+		glm::u8vec4(255, 255, 255, 80),
+
+		glm::u8vec4(255, 255, 255, 80),
+		glm::u8vec4(255, 255, 255, 80),
+		glm::u8vec4(255, 255, 255, 80),
+		glm::u8vec4(255, 255, 255, 80)
+	};
 	std::vector<glm::vec4> hypercube_vertices(hypercube_vertices_, hypercube_vertices_ + 16);
 	std::vector<int> hypercube_faces(hypercube_faces_, hypercube_faces_ + (24 * 4));
-	return new Mesh4D(hypercube_vertices, hypercube_faces, tesseract_program->program);
+	std::vector<glm::u8vec4> hypercube_colors(hypercube_colors_, hypercube_colors_ + (24 * 4));
+	return new Mesh4D(hypercube_vertices, hypercube_faces, hypercube_colors, tesseract_program->program);
+});
+
+MLoad <Mesh4D> reference_hypercube(LoadTagDefault, [](){
+	return new Mesh4D(*hypercube);
 });
 
 Load< MeshBuffer > meshes(LoadTagDefault, [](){
@@ -277,7 +320,13 @@ Load< Scene > scene(LoadTagDefault, [](){
 GameMode::GameMode() {
 	hypercube->apply_perspective();
 	hypercube->upload_vertex_data();
-	hypercube_transform.scale = glm::vec3(5, 5, 5);
+	reference_hypercube->apply_perspective();
+	reference_hypercube->upload_vertex_data();
+
+	hypercube_transform.scale = glm::vec3(1, 1, 1);
+	hypercube_transform.position = glm::vec3(0, -1.5f, 1.5);
+
+	ref_hypercube_transform.position = glm::vec3(0, 1.5f, 1.5);
 }
 
 GameMode::~GameMode() {
@@ -301,16 +350,62 @@ bool GameMode::handle_event(SDL_Event const &evt, glm::uvec2 const &window_size)
 
 	}
 
-	if(evt.type == SDL_KEYDOWN) {
-		
-	}
-
 	return false;
 }
 
 void GameMode::update(float elapsed) {
 	camera_parent_transform->rotation = glm::angleAxis(camera_spin, glm::vec3(0.0f, 0.0f, 1.0f));
 	spot_parent_transform->rotation = glm::angleAxis(spot_spin, glm::vec3(0.0f, 0.0f, 1.0f));
+
+	const Uint8* key_state = SDL_GetKeyboardState(NULL);
+
+	bool must_update = key_state[SDL_SCANCODE_Q] 
+					|| key_state[SDL_SCANCODE_W]
+					|| key_state[SDL_SCANCODE_E]
+					|| key_state[SDL_SCANCODE_R]
+					|| key_state[SDL_SCANCODE_A]
+					|| key_state[SDL_SCANCODE_S]
+					|| key_state[SDL_SCANCODE_D]
+					|| key_state[SDL_SCANCODE_F]
+					|| key_state[SDL_SCANCODE_Z]
+					|| key_state[SDL_SCANCODE_X]
+					|| key_state[SDL_SCANCODE_C]
+					|| key_state[SDL_SCANCODE_V];
+
+	if(key_state[SDL_SCANCODE_W])
+		hypercube->rotate(XY, 45.f * elapsed);
+	if(key_state[SDL_SCANCODE_Q])
+		hypercube->rotate(XY, -45.f * elapsed);
+
+	if(key_state[SDL_SCANCODE_R])
+		hypercube->rotate(XZ, 45.f * elapsed);
+	if(key_state[SDL_SCANCODE_E])
+		hypercube->rotate(XZ, -45.f * elapsed);
+
+	if(key_state[SDL_SCANCODE_S])
+		hypercube->rotate(XW, 45.f * elapsed);
+	if(key_state[SDL_SCANCODE_A])
+		hypercube->rotate(XW, -45.f * elapsed);
+
+	if(key_state[SDL_SCANCODE_F])
+		hypercube->rotate(YZ, 45.f * elapsed);
+	if(key_state[SDL_SCANCODE_D])
+		hypercube->rotate(YZ, -45.f * elapsed);
+
+	if(key_state[SDL_SCANCODE_X])
+		hypercube->rotate(YW, 45.f * elapsed);
+	if(key_state[SDL_SCANCODE_Z])
+		hypercube->rotate(YW, -45.f * elapsed);
+
+	if(key_state[SDL_SCANCODE_V])
+		hypercube->rotate(ZW, 45.f * elapsed);
+	if(key_state[SDL_SCANCODE_C])
+		hypercube->rotate(ZW, -45.f * elapsed);
+
+	if(must_update) {
+		hypercube->apply_perspective();
+		hypercube->upload_vertex_data();
+	}
 }
 
 //GameMode will render to some offscreen framebuffer(s).
@@ -481,7 +576,12 @@ void GameMode::draw(glm::uvec2 const &drawable_size) {
 	glBindTexture(GL_TEXTURE_2D, 0);
 	glActiveTexture(GL_TEXTURE0);
 
+	glDisable(GL_DEPTH_TEST);
+	
+	reference_hypercube->draw(ref_hypercube_transform, camera);
 	hypercube->draw(hypercube_transform, camera);
+	
+	glEnable(GL_DEPTH_TEST);
 
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 

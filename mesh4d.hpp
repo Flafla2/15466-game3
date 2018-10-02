@@ -10,8 +10,8 @@
 /*******
  * Attribution
  * 
- * Much of the math behind 4D object rendering was informed by the following
- * Unity Answers post:
+ * Much of the math behind 4D object rendering and 4D rotations
+ * was informed by the following Unity Answers post:
  * https://answers.unity.com/questions/438251/creating-a-tesseract-a-4d-cube.html
  * ... and the code sample that was posted there by user WillNode:
  * http://tomkail.com/tesseract/Tesseract.cs
@@ -30,8 +30,14 @@ enum RotationAxis4D {
 };
 
 struct Mesh4D {
+	struct Vertex {
+		glm::vec3 position;
+		glm::u8vec4 color = glm::u8vec4(128, 128, 128, 128);
+	};
+
 	// Logical objects (unprojected R4 space)
 	std::vector<glm::vec4> vertices;
+	std::vector<glm::u8vec4> colors;
 	std::vector<int> tris;
 	std::vector<glm::vec4> transformed_vertices;
 	glm::vec4 reference = glm::vec4(0.f,0.f,0.f,1.f); // used to compare against soln
@@ -39,10 +45,6 @@ struct Mesh4D {
 	float camera_position_w = 3;
 
 	// OpenGL Rendering objects (projected R3 space)
-	struct Vertex {
-		glm::vec3 position;
-		glm::u8vec4 color = glm::u8vec4(128, 128, 128, 128);
-	};
 	std::vector<Vertex> projected_vertices;
 	size_t cur_vao_size;
 	GLuint vao;
@@ -65,7 +67,8 @@ struct Mesh4D {
 	Attrib Position;
 	Attrib Color;
 
-	Mesh4D(std::vector<glm::vec4> vertices, std::vector<int> quads, GLuint program);
+	Mesh4D(std::vector<glm::vec4> vertices, std::vector<int> quads, std::vector<glm::u8vec4> quad_colors, GLuint program);
+	Mesh4D(Mesh4D &other);
 
 	void rotate(RotationAxis4D axis, float angle);
 	void apply_perspective();
@@ -76,4 +79,7 @@ struct Mesh4D {
 	}
 	void draw(Scene::Transform &t, glm::mat4 const &world_to_clip) const;
 	void draw(Scene::Transform &t, Scene::Camera const *camera) const;
+
+private:
+	void init_gl();
 };

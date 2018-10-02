@@ -33,4 +33,5 @@ struct GameMode : public Mode {
 	float spot_spin = 0.0f;
 
 	Scene::Transform hypercube_transform;
+	Scene::Transform ref_hypercube_transform;
 };
