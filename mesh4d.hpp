@@ -4,6 +4,7 @@
 
 #include <glm/glm.hpp>
 
+#include "Scene.hpp"
 #include "GL.hpp"
 
 /*******
@@ -34,7 +35,7 @@ struct Mesh4D {
 	std::vector<int> edges;
 	std::vector<int> tris;
 	std::vector<glm::vec4> transformed_vertices;
-	glm::vec4 reference(0,0,0,1); // used to compare against soln
+	glm::vec4 reference = glm::vec4(0.f,0.f,0.f,1.f); // used to compare against soln
 	// Assume camera is looking down -w axis, with perspective projection wrt w
 	float camera_position_w = 3;
 
@@ -44,8 +45,10 @@ struct Mesh4D {
 		glm::u8vec4 color;
 	};
 	std::vector<Vertex> projected_vertices;
+	size_t cur_vao_size;
 	GLuint vao;
 	GLuint vbo;
+	GLuint program;
 
 	// From MeshBuffer
 	struct Attrib {
@@ -63,9 +66,14 @@ struct Mesh4D {
 	Attrib Position;
 	Attrib Color;
 
-	Mesh4D(std::vector<glm::vec4> vertices, std::vector<int> edges, std::vector<int> tris);
+	Mesh4D(std::vector<glm::vec4> vertices, std::vector<int> edges, std::vector<int> tris, GLuint program);
 
 	void rotate(RotationAxis4D axis, float angle);
 	void apply_perspective();
 	void upload_vertex_data();
+	void reset_rotation() {
+		transformed_vertices = std::vector<glm::vec4>(vertices);
+		reference = glm::vec4(0,0,0,1);
+	}
+	void draw(Scene::Transform &t, glm::mat4 const &world_to_clip);
 };

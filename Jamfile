@@ -81,6 +81,7 @@ CLIENT_NAMES =
 	draw_text
 	Sound
 	mesh4d
+	tesseract_program
 	;
 
 if $(OS) = NT {
