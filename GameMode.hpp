@@ -2,6 +2,7 @@
 
 #include "Scene.hpp"
 #include "Mode.hpp"
+#include "mesh4d.hpp"
 
 #include "MeshBuffer.hpp"
 #include "GL.hpp"
@@ -11,6 +12,7 @@
 #include <glm/gtc/quaternion.hpp>
 
 #include <vector>
+#include <list>
 
 // The 'GameMode' mode is the main gameplay mode:
 
@@ -32,6 +34,24 @@ struct GameMode : public Mode {
 	float camera_spin = 0.0f;
 	float spot_spin = 0.0f;
 
+	enum DisplayState {
+		NONE, WIN, LOSE
+	};
+
+	DisplayState current_display = NONE;
+	float display_timer = 0;
+
 	Scene::Transform hypercube_transform;
 	Scene::Transform ref_hypercube_transform;
+
+	struct Rotation4D {
+		RotationAxis4D axis;
+		float angle;
+
+		Rotation4D(RotationAxis4D axis, float angle) : axis(axis), angle(angle) {}
+	};
+	std::list<Rotation4D> target_rotations;
+
+	void regenerate_target_rotations();
+	void reapply_target_rotations();
 };

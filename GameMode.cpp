@@ -22,6 +22,7 @@
 #include <fstream>
 #include <map>
 #include <cstddef>
+#include <cstdlib>
 #include <random>
 
 MLoad< Mesh4D > hypercube(LoadTagDefault, [](){
@@ -163,7 +164,7 @@ Load< GLuint > blur_program(LoadTagDefault, [](){
 		"void main() {\n"
 		"	vec2 at = (gl_FragCoord.xy - 0.5 * textureSize(tex, 0)) / textureSize(tex, 0).y;\n"
 		//make blur amount more near the edges and less in the middle:
-		"	float amt = (0.01 * textureSize(tex,0).y) * max(0.0,(length(at) - 0.3)/0.2);\n"
+		"	float amt = 0.3 * (0.01 * textureSize(tex,0).y) * max(0.0,(length(at) - 0.5)/0.2);\n"
 		//pick a vector to move in for blur using function inspired by:
 		//https://stackoverflow.com/questions/12964279/whats-the-origin-of-this-glsl-rand-one-liner
 		"	vec2 ofs = amt * normalize(vec2(\n"
@@ -235,6 +236,8 @@ Load< GLuint > white_tex(LoadTagDefault, [](){
 });
 
 
+Scene::Transform *win_text_transform = nullptr;
+Scene::Transform *lose_text_transform = nullptr;
 Scene::Transform *camera_parent_transform = nullptr;
 Scene::Camera *camera = nullptr;
 Scene::Transform *spot_parent_transform = nullptr;
@@ -264,7 +267,7 @@ Load< Scene > scene(LoadTagDefault, [](){
 		obj->programs[Scene::Object::ProgramTypeDefault] = texture_program_info;
 		if (t->name == "Platform") {
 			obj->programs[Scene::Object::ProgramTypeDefault].textures[0] = *wood_tex;
-		} else if (t->name == "Pedestal") {
+		} else if (t->name == "Pedestal" || t->name == "PedestalTarget") {
 			obj->programs[Scene::Object::ProgramTypeDefault].textures[0] = *marble_tex;
 		} else {
 			obj->programs[Scene::Object::ProgramTypeDefault].textures[0] = *white_tex;
@@ -289,6 +292,15 @@ Load< Scene > scene(LoadTagDefault, [](){
 		if (t->name == "SpotParent") {
 			if (spot_parent_transform) throw std::runtime_error("Multiple 'SpotParent' transforms in scene.");
 			spot_parent_transform = t;
+		}
+		if(t->name == "WinText") {
+			if (win_text_transform) throw std::runtime_error("Multiple 'WinText' transforms in scene.");
+			win_text_transform = t;
+		}
+
+		if(t->name == "LoseText") {
+			if (lose_text_transform) throw std::runtime_error("Multiple 'LoseText' transforms in scene.");
+			lose_text_transform = t;
 		}
 
 	}
@@ -327,15 +339,79 @@ GameMode::GameMode() {
 	hypercube_transform.position = glm::vec3(0, -1.5f, 1.5);
 
 	ref_hypercube_transform.position = glm::vec3(0, 1.5f, 1.5);
+
+	regenerate_target_rotations();
+	reapply_target_rotations();
+
+	hypercube->apply_perspective();
+	hypercube->upload_vertex_data();
+	reference_hypercube->apply_perspective();
+	reference_hypercube->upload_vertex_data();
+
+	win_text_transform->position.z = -5;
+	lose_text_transform->position.z = -5;
 }
 
 GameMode::~GameMode() {
+}
+
+void GameMode::regenerate_target_rotations() {
+	target_rotations.clear();
+	// On first challenge, only do one rotation for difficulty
+	// scaling.
+	static bool generated_before = false;
+
+	for(int x = 0; x < (generated_before ? 2 : 1); ++x) {
+		int r = std::rand() % 3;
+		RotationAxis4D axis;
+		if(r == 0) axis = XW;
+		else if (r == 1) axis = YW;
+		else axis = ZW; // r == 2
+		double r2 = ((double)std::rand()) / ((double)RAND_MAX);
+		float angle = 180.f * r2;
+		target_rotations.push_front(Rotation4D(axis, angle));
+	}
+	generated_before = true;
+}
+
+void GameMode::reapply_target_rotations() {
+	reference_hypercube->reset_rotation();
+	for(auto rot : target_rotations) {
+		reference_hypercube->rotate(rot.axis, rot.angle);
+	}
 }
 
 bool GameMode::handle_event(SDL_Event const &evt, glm::uvec2 const &window_size) {
 	//ignore any keys that are the result of automatic key repeat:
 	if (evt.type == SDL_KEYDOWN && evt.key.repeat) {
 		return false;
+	}
+
+	if (evt.type == SDL_KEYDOWN) {
+		if (evt.key.keysym.sym == SDLK_SPACE) {
+			// check
+			if(display_timer <= 0) {
+				float d = glm::dot(hypercube->reference, reference_hypercube->reference);
+				if(d > 0.9f) {
+					std::cout << "GOT IT!" << std::endl;
+					current_display = WIN;
+				} else {
+					std::cout << "NOT GOT IT!" << std::endl;
+					current_display = LOSE;
+				}
+				display_timer = 1.0;
+			}
+			
+		} else if (evt.key.keysym.sym == SDLK_BACKSPACE) {
+			// reset
+			hypercube->reset_rotation();
+			reapply_target_rotations();
+
+			hypercube->apply_perspective();
+			hypercube->upload_vertex_data();
+			reference_hypercube->apply_perspective();
+			reference_hypercube->upload_vertex_data();
+		}
 	}
 
 	if (evt.type == SDL_MOUSEMOTION) {
@@ -372,25 +448,37 @@ void GameMode::update(float elapsed) {
 					|| key_state[SDL_SCANCODE_C]
 					|| key_state[SDL_SCANCODE_V];
 
-	if(key_state[SDL_SCANCODE_W])
+	if(key_state[SDL_SCANCODE_W]) {
 		hypercube->rotate(XY, 45.f * elapsed);
-	if(key_state[SDL_SCANCODE_Q])
+		reference_hypercube->rotate(XY, 45.f * elapsed);
+	}
+	if(key_state[SDL_SCANCODE_Q]) {
 		hypercube->rotate(XY, -45.f * elapsed);
+		reference_hypercube->rotate(XY, -45.f * elapsed);
+	}
 
-	if(key_state[SDL_SCANCODE_R])
+	if(key_state[SDL_SCANCODE_R]) {
 		hypercube->rotate(XZ, 45.f * elapsed);
-	if(key_state[SDL_SCANCODE_E])
+		reference_hypercube->rotate(XZ, 45.f * elapsed);
+	}
+	if(key_state[SDL_SCANCODE_E]) {
 		hypercube->rotate(XZ, -45.f * elapsed);
+		reference_hypercube->rotate(XZ, -45.f * elapsed);
+	}
 
 	if(key_state[SDL_SCANCODE_S])
 		hypercube->rotate(XW, 45.f * elapsed);
 	if(key_state[SDL_SCANCODE_A])
 		hypercube->rotate(XW, -45.f * elapsed);
 
-	if(key_state[SDL_SCANCODE_F])
+	if(key_state[SDL_SCANCODE_F]) {
 		hypercube->rotate(YZ, 45.f * elapsed);
-	if(key_state[SDL_SCANCODE_D])
+		reference_hypercube->rotate(YZ, 45.f * elapsed);
+	}
+	if(key_state[SDL_SCANCODE_D]) {
 		hypercube->rotate(YZ, -45.f * elapsed);
+		reference_hypercube->rotate(YZ, -45.f * elapsed);
+	}
 
 	if(key_state[SDL_SCANCODE_X])
 		hypercube->rotate(YW, 45.f * elapsed);
@@ -402,10 +490,43 @@ void GameMode::update(float elapsed) {
 	if(key_state[SDL_SCANCODE_C])
 		hypercube->rotate(ZW, -45.f * elapsed);
 
+	if(display_timer < 0 && current_display != NONE) {
+		win_text_transform->position.z = -5;
+		lose_text_transform->position.z = -5;
+
+		if(current_display == WIN) {
+			hypercube->reset_rotation();
+			regenerate_target_rotations();
+			reapply_target_rotations();
+			must_update = true;
+		}
+		current_display = NONE;
+	}
+	if(display_timer >= 0) {
+		if(current_display == WIN) {
+			win_text_transform->position.z = -.1f;
+			lose_text_transform->position.z = -5;
+		} else if(current_display == LOSE) {
+			win_text_transform->position.z = -5;
+			lose_text_transform->position.z = -.1f;
+		} else {
+			win_text_transform->position.z = -5;
+			lose_text_transform->position.z = -5;
+		}
+	} else {
+		win_text_transform->position.z = -5;
+		lose_text_transform->position.z = -5;
+	}
+
 	if(must_update) {
 		hypercube->apply_perspective();
 		hypercube->upload_vertex_data();
+		reference_hypercube->apply_perspective();
+		reference_hypercube->upload_vertex_data();
 	}
+
+	if(display_timer > 0)
+		display_timer -= elapsed;
 }
 
 //GameMode will render to some offscreen framebuffer(s).
