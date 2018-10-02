@@ -21,6 +21,7 @@
 #include <iostream>
 #include <fstream>
 #include <map>
+#include <ctime>
 #include <cstddef>
 #include <cstdlib>
 #include <random>
@@ -357,11 +358,13 @@ GameMode::~GameMode() {
 
 void GameMode::regenerate_target_rotations() {
 	target_rotations.clear();
-	// On first challenge, only do one rotation for difficulty
-	// scaling.
-	static bool generated_before = false;
+	// On first challenge, only do one rotation
+	// Then do two rotations on second one
+	// Then three rotations for the rest of the game
+	static int time_generated = 1;
 
-	for(int x = 0; x < (generated_before ? 2 : 1); ++x) {
+	std::srand(std::time(nullptr));
+	for(int x = 0; x < std::min(time_generated, 3); ++x) {
 		int r = std::rand() % 3;
 		RotationAxis4D axis;
 		if(r == 0) axis = XW;
@@ -371,7 +374,7 @@ void GameMode::regenerate_target_rotations() {
 		float angle = 40.f + 240.f * r2;
 		target_rotations.push_front(Rotation4D(axis, angle));
 	}
-	generated_before = true;
+	time_generated++;
 }
 
 void GameMode::reapply_target_rotations() {
